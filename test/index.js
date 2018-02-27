@@ -40,7 +40,7 @@ describe('DynamoDbCache', () => {
         cbStub.getCalls().length.should.equal(1);
         cbStub.getCall(0).args[0].TableName.should.equal('cache');
         cbStub.getCall(0).args[0].Item.key.S.should.equal('42');
-        cbStub.getCall(0).args[0].Item.val.M.data.S.should.equal('My answer is ...');
+        cbStub.getCall(0).args[0].Item.val.S.should.equal('My answer is ...');
       });
 
     });
@@ -66,7 +66,7 @@ describe('DynamoDbCache', () => {
         cbStub.getCalls().length.should.equal(1);
         cbStub.getCall(0).args[0].TableName.should.equal('test');
         cbStub.getCall(0).args[0].Item.id.S.should.equal('42');
-        cbStub.getCall(0).args[0].Item.config.M.data.S.should.equal('My answer is ...');
+        cbStub.getCall(0).args[0].Item.config.S.should.equal('My answer is ...');
       });
 
     });
@@ -93,7 +93,7 @@ describe('DynamoDbCache', () => {
         cbStub.getCall(0).args[0].TableName.should.equal('test');
         cbStub.getCall(0).args[0].Item.id.N.should.equal('42');
         cbStub.getCall(0).args[0].Item.environemnt.S.should.equal('dev');
-        cbStub.getCall(0).args[0].Item.config.M.data.M.key.S.should.deepEqual('the answer');
+        cbStub.getCall(0).args[0].Item.config.M.key.S.should.deepEqual('the answer');
       });
     });
 
@@ -112,7 +112,7 @@ describe('DynamoDbCache', () => {
               'N':'42'
             },
             'val': {
-              'M': { 'data': { 'M': { 'key': { 'S': 'val' }}}}
+               'M': { 'key': { 'S': 'val' }}
             }
           }
         });             
@@ -146,7 +146,7 @@ describe('DynamoDbCache', () => {
               'N':'42'
             },
             'config': {
-              'M': { 'data': { 'M': { 'key': { 'S': 'val' }}}}
+              'M': { 'key': { 'S': 'val' }}
             }
           }
         });             
@@ -182,7 +182,7 @@ describe('DynamoDbCache', () => {
               'S':'dev'
             },
             'config': {
-              'M': { 'data': { 'M': { 'key': { 'S': 'val' }}}}
+              'M': { 'key': { 'S': 'val' }}
             }
           }
         });             
